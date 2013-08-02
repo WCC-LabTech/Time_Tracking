@@ -140,6 +140,8 @@ INSTALLED_APPS = (
     'rest_framework.authtoken',
     'corsheaders',
     'pay_period',
+    'faculty_request',
+    'Inventory_Management',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )

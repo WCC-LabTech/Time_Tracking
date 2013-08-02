@@ -12,9 +12,7 @@ class SaveWorkEventSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = WorkEvent
-        fields = ('url', 'category',
-                  'start_time', 'end_time',
-                  'start_date', 'comments',
+        fields = ('start_date', 'comments',
                   'on_campus',)
 
 class ViewWorkEventSerializer(serializers.HyperlinkedModelSerializer):
@@ -23,7 +21,7 @@ class ViewWorkEventSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = WorkEvent
-        fields = ('url', 'user', 'category',
+        fields = ('id', 'url', 'user', 'category',
                   'start_time', 'end_time',
                   'start_date', 'comments',
                   'on_campus',)
@@ -32,7 +30,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     work_event = serializers.HyperlinkedRelatedField(many=True, view_name='work_event-detail')
     class Meta:
         model = User
-        fields = ('url', 'username',
+        fields = ('id', 'url', 'username',
                   'first_name', 'last_name',)
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):

@@ -10,4 +10,5 @@ def api_root(request, format=None):
         'Work Events': reverse('workevent-list', request=request, format=format),
         'Categories': reverse('category-list', request=request, format=format),
         'Pay Periods': reverse('payperiod-list', request=request, format=format),
+        #'Faculty Requests': reverse('faculty-list',  request=request, format=format),
     })
