@@ -15,10 +15,14 @@ from scheducal.views.category_views import (
 from scheducal.views.workevent_views import (
         work_event_list,
         work_event_detail,
+        work_event_create,
         work_event_list_for_pay_period,
         work_event_add,
         work_event_update,
         work_event_delete,
+    )
+from scheducal.views.reports.workevent_views import (
+        work_event_list_for_pay_period_report,
     )
  
 urlpatterns = patterns('',
@@ -35,7 +39,14 @@ urlpatterns = patterns('',
     url(r'^workevent/$', work_event_list),
     url(r'^workevent/(?P<pk>[0-9]+)/$', work_event_detail),
     url(r'^workevent/payperiod/(?P<pay_period>[0-9]+)/$', work_event_list_for_pay_period),
+<<<<<<< HEAD
     url(r'^workevent/add', work_event_add),
     url(r'^workevent/update/(?P<pk>[0-9]+)/$', work_event_update),
     url(r'^workevent/delete/(?P<pk>[0-9]+)/$', work_event_delete),
+=======
+    url(r'^workevent/create/$', work_event_create)
+
+    # Report views
+    url(r'^report/workevent/payperiod/(?P<pay_period>[0-9]+)/$', work_event_list_for_pay_period_report),
+>>>>>>> a40e9142b4d258d8db66c5ca208cf6e3eec12544
 )

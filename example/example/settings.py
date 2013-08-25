@@ -25,13 +25,6 @@ DATABASES = {
     }
 }
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-    )
-}
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = []
@@ -137,13 +130,14 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'scheducal',
-    'rest_framework',
-    'rest_framework.authtoken',
     'corsheaders',
     'pay_period',
     'tokenauth',
+<<<<<<< HEAD
     'faculty_request',
     'Inventory_Management',
+=======
+>>>>>>> a40e9142b4d258d8db66c5ca208cf6e3eec12544
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
@@ -187,9 +181,3 @@ LOGGING = {
     }
 }
 
-# API base permissions
-#REST_FRAMEWORK = {
-#    'DEFAULT_PERMISSION_CLASSES': (
-#        'rest_framework.permissions.IsAuthenticated',
-#    )
-#}

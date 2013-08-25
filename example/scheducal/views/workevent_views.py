@@ -19,10 +19,12 @@ from django.core import serializers
 
 @require_http_methods(['GET'])
 def work_event_list(request):
-    user = request.user
-    if not user:
+    '''
+    list work events for logged in user
+    '''
+    if not request.user:
         return HttpResponse(status=403)
-    work_events = WorkEvent.objects.all()
+    work_events = WorkEvent.objects.filter(user=request.user)
     data = [work_event.to_dict() for work_event in work_events]
     data = simplejson.dumps(data)
     return HttpResponse(data, mimetype='application/json')
@@ -48,6 +50,7 @@ def work_event_list_for_pay_period(request, pay_period):
 def work_event_detail(request, pk):
     event = WorkEvent.objects.get(pk=pk)
     data = simplejson.dumps(event.to_dict())
+<<<<<<< HEAD
     return HttpResponse(data, mimetype='application/json')
     
 @csrf_exempt
@@ -104,3 +107,23 @@ def work_event_delete(request, pk):
         data = {'message': 'Work Event Deletion Failed'}
         code = 400
     return HttpResponse(simplejson.dumps(data), status=code)
+=======
+    return HttpResponse(data, mimetype='application/json') 
+
+@csrf_exempt
+@require_http_methods(['POST'])
+def work_event_create(request):
+    data = simplejson.dumps({'message': ''})
+    try:
+        work_event = WorkEvent(#**request.POST)
+                        user=request.user,
+                        start_time=request.POST['start_time'],
+                        end_time=request.POST['end_time'],
+                        start_date=request.POST['start_date'],
+                        comments=request.POST['comments'],
+                        categoty=request.POST['category'],
+                        clocked_in=request.POST['clocked_in'])
+    except:
+        return HttpResponse(data, status=400)
+    return HttpResponse(data, status=201)
+>>>>>>> a40e9142b4d258d8db66c5ca208cf6e3eec12544
