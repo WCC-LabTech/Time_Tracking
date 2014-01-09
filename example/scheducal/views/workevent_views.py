@@ -16,6 +16,7 @@ from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
 from django.utils import simplejson
 from django.core import serializers
+from scheducal.lib.user_helper import check_clocked_in
 import datetime
 import time
 
@@ -41,8 +42,9 @@ def work_event_list_for_pay_period(request, pay_period):
         raise ObjectDoesNotExist 
     try:
         start = p.start
+        start.seconds = 00
         end = datetime.datetime(year=p.end.year, month=p.end.month, day=p.end.day,
-                                hour=23, minute=59)
+                                hour=23, minute=59,seconds=00)
         events = WorkEvent.objects.filter(user=user) \
                                   .filter(start__gte=start) \
                                   .filter(start__lte=end)
@@ -90,11 +92,12 @@ def work_event_create(request):
 @csrf_exempt
 @require_http_methods(['POST'])
 def work_event_update(request, pk):
-    clocked_in = request.POST['clocked_in']
+    """clocked_in = request.POST['clocked_in']
     if clocked_in == 'True' or clocked_in == 'true' or clocked_in == True:
         clocked_in = True
     else:
-        clocked_in = False
+        clocked_in = False"""
+    clocked_in = check_clocked_in(request)
     workevent = WorkEvent.objects.get(pk=pk)
     workevent.start= request.POST['t_start'].replace('/', '-')
     workevent.end= request.POST['t_end'].replace('/', '-')
