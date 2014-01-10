@@ -17,15 +17,17 @@ def modify_user(user):
 		updated_user.last_name  = user.POST['last_name']
 		updated_user.group      = user.POST['group']
 	else:
-		new_user = User()
-        	new_user.user_name = user.POST['user_name']
-	        new_user.first_name = user.POST['first_name']
-        	new_user.last_name = user.POST['last_name']
-	        new_user.group = user.POST['group'] 
+	    new_user = User()
+            new_user.user_name = user.POST['user_name']
+	    new_user.first_name = user.POST['first_name']
+            new_user.last_name = user.POST['last_name']
+	    new_user.group = user.POST['group'] 
 
 @csrf_exempt
 @require_http_methods(['POST'])        
 def check_clocked_in(request):
 	clocked_in = request.POST['clocked_in']
-	return clocked_in == "True" || clocked_in == "true" 
-	       || clocked_in == true
+	if clocked_in == "True" || clocked_in == "true" 
+	       || clocked_in == true :
+           return True	
+        return False
