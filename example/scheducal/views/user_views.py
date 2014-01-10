@@ -36,10 +36,11 @@ def create_user(user):
     status_code =""
     try:
        new_user = User()
-       new_user.user_name = user.POST['user_name']
+       new_user.username = user.POST['user_name']
        new_user.first_name = user.POST['first_name']
        new_user.last_name = user.POST['last_name']
-       new_user.group = user.POST['group'] 
+       new_user.email = user.POST['email']
+       new_user.groups = user.POST['groups'] 
        status_code = "201"
     except:
        status_code = "401"
@@ -48,7 +49,7 @@ def create_user(user):
 @require_http_methods(['POST'])
 def update_user(user):
 	status_code = "" # default to null string
-	updated_user = User().objects(all).filter(user.POST['pk'])
+	updated_user = User().objects(all).filter(pk=user.POST['pk'])
 	try:
 	   """updated_user.user_name  = user.POST['user_name']
 	      updated_user.first_name = user.POST['first_name']
