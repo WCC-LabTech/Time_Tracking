@@ -34,15 +34,17 @@ def delete_user(user_id):
 @require_http_methods(['POST'])
 def create_user(user):    
     status_code =""
+    new_user = User()
+    new_user.username = user.POST['username']
+    new_user.first_name = user.POST['first_name']
+    new_user.last_name = user.POST['last_name']
+    new_user.email = user.POST['email']
+
     try:
-       new_user = User()
-       new_user.username = user.POST['user_name']
-       new_user.first_name = user.POST['first_name']
-       new_user.last_name = user.POST['last_name']
-       new_user.email = user.POST['email']
-       new_user.groups = user.POST['groups'] 
        status_code = "201"
+       new_user.save()
     except:
+       print(new_user)
        status_code = "401"
     return HttpResponse(status_code)
 @csrf_exempt
