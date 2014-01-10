@@ -22,10 +22,11 @@ def user_detail(request, pk):
 @csrf_exempt    
 @require_http_methods(['POST'])
 def delete_user(user_id):
-    user = User.objects.get(all).filter(user_id.POST['pk'])
+    """user = User.objects.get(all).filter(user_id.POST['pk'])
+    """
     status_code = ""
     try:
-       user.delete()
+       User.objects.filter(user_id.POST['pk']).delete()
        status_code = "201"
     except:
        status_code = "400" 
