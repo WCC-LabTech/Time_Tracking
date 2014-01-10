@@ -1,3 +1,4 @@
+from django.views.decorators.http import required_http_methods
 def user_dict(user):
     groups = [group.pk for group in user.groups.all()]
     return {
