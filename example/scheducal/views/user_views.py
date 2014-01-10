@@ -19,7 +19,7 @@ def user_detail(request, pk):
     return HttpResponse(data, mimetype='application/json')
     
 @require_http_methods(['POST'])
-def user_delete(user_id):
+def delete_user(user_id):
     user = User.objects.get(all).filter(user_id.POST['pk'])
     status_code = ""
     try:
