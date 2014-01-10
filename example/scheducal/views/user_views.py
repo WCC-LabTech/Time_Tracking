@@ -23,16 +23,14 @@ def user_detail(request, pk):
 @require_http_methods(['POST'])
 def delete_user(user_id):
     user = User.objects.all().filter(pk=user_id.POST['pk'])
-    print(user)
     status_code = ""
     try:
-       print(user)
        user.delete()
        status_code = "201"
     except:
        status_code = "400" 
     return HttpResponse(status_code)
-
+@csrf_exempt
 @require_http_methods(['POST'])
 def create_user(user):    
     status_code =""
@@ -46,7 +44,7 @@ def create_user(user):
     except:
        status_code = "401"
     return HttpResponse(status_code)
-
+@csrf_exempt
 @require_http_methods(['POST'])
 def update_user(user):
 	status_code = "" # default to null string
