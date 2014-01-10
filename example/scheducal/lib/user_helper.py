@@ -27,7 +27,6 @@ def modify_user(user):
 @require_http_methods(['POST'])        
 def check_clocked_in(request):
 	clocked_in = request.POST['clocked_in']
-	if clocked_in == "True" or clocked_in == "true" 
-	       or clocked_in == true :
+	if clocked_in == "True" or clocked_in == "true" or clocked_in == True :
            return True	
         return False
