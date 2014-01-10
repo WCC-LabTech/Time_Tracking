@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.utils import simplejson
 from django.core import serializers
 from django.views.decorators.http import require_http_methods
+from django.views.decorators.csrf import csrf_exempt
 from scheducal.lib.user_helper import user_dict
 
 @require_http_methods(['GET'])
@@ -17,7 +18,8 @@ def user_detail(request, pk):
     user = User.objects.get(pk=pk)
     data = simplejson.dumps(user_dict(user))
     return HttpResponse(data, mimetype='application/json')
-    
+
+@csrf_exempt    
 @require_http_methods(['POST'])
 def delete_user(user_id):
     user = User.objects.get(all).filter(user_id.POST['pk'])
