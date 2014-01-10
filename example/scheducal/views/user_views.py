@@ -26,7 +26,9 @@ def delete_user(user_id):
     """
     status_code = ""
     try:
-       User.objects.filter(user_id.POST['pk']).delete()
+       user  = User.objects.filter(user_id.POST['pk'])
+       print(user)
+       user.delete()
        status_code = "201"
     except:
        status_code = "400" 
