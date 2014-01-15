@@ -5,7 +5,8 @@ from django.core import serializers
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
 from scheducal.lib.user_helper import user_dict
-
+from django.contrib.auth.models import Group 
+import json
 @require_http_methods(['GET'])
 def user_list(request):
     users = User.objects.all()
@@ -32,19 +33,24 @@ def delete_user(user_id):
     return HttpResponse(status_code)
 @csrf_exempt
 @require_http_methods(['POST'])
-def create_user(user):    
+def create_user(user):
+        
     status_code =""
     new_user = User()
     new_user.username = user.POST['username']
     new_user.first_name = user.POST['first_name']
     new_user.last_name = user.POST['last_name']
     new_user.email = user.POST['email']
-
+    grp = list(json.loads(user.POST['groups']))
+    g = Group.objects.all()
     try:
        status_code = "201"
        new_user.save()
+       for new_group in g:
+        for user_group in grp:
+            if int(new_group.pk) == int(user_group):
+               new_group.user_set.add(new_user)
     except:
-       print(new_user)
        status_code = "401"
     return HttpResponse(status_code)
 @csrf_exempt
@@ -63,6 +69,7 @@ def update_user(user):
 	   status_code = "401" 
 	return HttpResponse(status_code)
 # One function to rule them all
+@csrf_exempt
 @require_http_methods(['POST'])
 def update_or_create_user(user):
 	status_code = ""
