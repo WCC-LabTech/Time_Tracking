@@ -59,10 +59,7 @@ def update_user(user):
 	status_code = "" # default to null string
 	updated_user = User().objects(all).filter(pk=user.POST['pk'])
 	try:
-	   """updated_user.user_name  = user.POST['user_name']
-	      updated_user.first_name = user.POST['first_name']
-	      updated_user.last_name  = user.POST['last_name']
-	      updated_user.group      = user.POST['group']"""
+	  
 	   modify_user(user)
 	   status_code = "201"
 	except:
