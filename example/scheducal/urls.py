@@ -9,6 +9,7 @@ from scheducal.views.user_views import (
         create_user,
         delete_user,
         update_user,
+        update_or_create_user,
     )
 from scheducal.views.category_views import (
         category_list,
@@ -33,7 +34,7 @@ urlpatterns = patterns('',
     url(r'^user/$', user_list),
     url(r'^user/(?P<pk>[0-9]+)/$', user_detail),
     url(r'^user/delete/', delete_user),
-    url(r'^user/create/', create_user),
+    url(r'^user/create/', update_or_create_user),
     url(r'^user/update/', update_user),
     # Category views
     url(r'^category/$', category_list),

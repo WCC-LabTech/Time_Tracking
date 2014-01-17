@@ -7,6 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from scheducal.lib.user_helper import user_dict
 from django.contrib.auth.models import Group 
 import json
+
 @require_http_methods(['GET'])
 def user_list(request):
     users = User.objects.all()
