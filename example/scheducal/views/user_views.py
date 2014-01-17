@@ -50,7 +50,7 @@ def create_user(user):
             for user_group in grp:
                 if int(new_group.pk) == int(user_group):
                    new_group.user_set.add(new_user)
-    status_code = "201"
+        status_code = "201"
     except:
        status_code = "401"
     return HttpResponse(status_code)
