@@ -66,11 +66,12 @@ def work_event_detail(request, pk):
 @csrf_exempt
 @require_http_methods(['POST'])
 def work_event_create(request):
-    clocked_in = request.POST['clocked_in']
+    """clocked_in = request.POST['clocked_in']
     if clocked_in == 'True' or clocked_in == 'true' or clocked_in == True:
         clocked_in = True
     else:
-        clocked_in = False
+        clocked_in = False"""
+    clocked_in = check_clocked_in(request)
     category = Category.objects.get(pk=request.POST['category'])
     data = simplejson.dumps({'message': ''})
     print request.POST

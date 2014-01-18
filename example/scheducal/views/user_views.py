@@ -37,8 +37,7 @@ def delete_user(user_id):
 def create_user(user):
         
     status_code =""
-    new_user = User()
-    
+    new_user = User() 
     try:
         new_user.username = user.POST['username']
         new_user.first_name = user.POST['first_name']
