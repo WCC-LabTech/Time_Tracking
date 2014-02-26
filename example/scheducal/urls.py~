@@ -35,7 +35,7 @@ urlpatterns = patterns('',
     url(r'^user/(?P<pk>[0-9]+)/$', user_detail),
     url(r'^user/delete/', delete_user),
     url(r'^user/create/', update_or_create_user),
-    url(r'^user/update/', update_or_create_user),
+    url(r'^user/update/', update_user),
     # Category views
     url(r'^category/$', category_list),
     url(r'^category/(?P<pk>[0-9]+)/$', category_detail),
