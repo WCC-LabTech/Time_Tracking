@@ -18,7 +18,7 @@ def user_dict(user):
 def modify_user(user):
 	
     if User().objects.get(all).filter(user.POST['pk']).exists():
-	   updated_user = User().objects.get(all).filter(user.POST['pk'])
+	   updated_user = user
            updated_user.username = user.POST['username']
            updated_user.first_name = user.POST['first_name']
            updated_user.last_name = user.POST['last_name']

@@ -59,7 +59,7 @@ def update_user(user):
 	status_code = "" # default to null string
 	updated_user = User().objects(all).filter(pk=user.POST['pk'])
 	try:
-	   modify_user(update_user)
+	   modify_user(user)
 	   status_code = "201"
 	except:
 	   status_code = "401" 
